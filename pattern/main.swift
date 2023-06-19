@@ -1,11 +1,23 @@
-//
-//  main.swift
-//  pattern
-//
-//  Created by Akerke on 19.06.2023.
-//
+protocol AlarmDelegate {
+    func alarmDidRing()
+}
 
-import Foundation
+class AlarmClock {
+    var delegate:  AlarmDelegate?
+    
+    func ringAlarm() {
+        print("Будильник сработал!")
+        delegate?.alarmDidRing()
+    }
+}
 
-print("Hello, World!")
+class ViewController {
+    let alarmClock = AlarmClock()
+    
+    func alarmDidRing(){
+        print ("Получено событие: будильник сработал!")
+    }
+}
 
+let alarm = ViewController()
+alarm.alarmClock.ringAlarm()
